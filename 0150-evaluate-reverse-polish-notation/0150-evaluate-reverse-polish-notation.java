@@ -1,9 +1,6 @@
 class Solution {
     public int evalRPN(String[] tokens) {
       
-		if(tokens.length == 1)
-			return Integer.parseInt(tokens[0]);
-		
         Stack<Integer> numbersStack = new Stack<>();
         
         for (String token : tokens) {

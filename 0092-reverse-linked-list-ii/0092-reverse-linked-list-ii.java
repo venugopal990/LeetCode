@@ -34,6 +34,7 @@ class Solution {
 		
 		leftPrev.next = prev;
 		subList.next = currNode;
+
 		
 		return dummy.next;
     }

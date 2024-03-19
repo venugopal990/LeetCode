@@ -29,8 +29,7 @@ class Solution {
 
        
 
-        ListNode temp = i.next.next;
-        i.next=temp;
+        i.next = i.next.next;
 
 		
 		return head;

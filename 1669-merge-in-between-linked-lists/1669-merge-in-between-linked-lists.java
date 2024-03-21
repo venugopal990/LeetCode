@@ -16,8 +16,6 @@ class Solution {
         ListNode list1New = new ListNode(0);
         list1New.next = list1;
 
-        ListNode list1New1 = list1New.next;
-
 
         ListNode list2LastNode = list2;
 
@@ -29,7 +27,7 @@ class Solution {
         int i=0;
         int count=0;
         ListNode list1firstNode = list1;
-        ListNode list1LastNode = list1New1;
+        ListNode list1LastNode = list1;
         while(list1LastNode!=null){
 
             if(count!=1){

@@ -1,6 +1,6 @@
 class Solution {
     public int findDuplicate(int[] nums) {
-        
+        //Floyd's Cycle
         int slow=0, fast=0;
 
         do{

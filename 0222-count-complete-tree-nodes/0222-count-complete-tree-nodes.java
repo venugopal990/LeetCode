@@ -20,10 +20,10 @@ class Solution {
             return 0;
         }
 
-        int leftTree = countNodes(root.left);
-        int rightTree = countNodes(root.right);
+        int leftTreeCount = countNodes(root.left);
+        int rightTreeCount = countNodes(root.right);
 
-        return leftTree+rightTree+1;
+        return leftTreeCount+rightTreeCount+1;
 
         
     }

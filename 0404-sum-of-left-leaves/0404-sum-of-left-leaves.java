@@ -15,6 +15,26 @@
  */
 class Solution {
     public int sumOfLeftLeaves(TreeNode root) {
+        return dfs(root,false);
+    }
+    private int dfs(TreeNode root,boolean isLeft){
+
+        if(root ==  null){
+            return 0;
+        }
+
+        if(root.left == null && root.right == null){
+            return isLeft?root.val:0;
+        }
+
+        int left = dfs(root.left,true);
+        int right = dfs(root.right,false);
+
+        return left+right;
+
+    }
+    /*
+    public int sumOfLeftLeaves(TreeNode root) {
 
         Queue<Pair> queue = new LinkedList<>();
         queue.offer(new Pair(root,false));
@@ -34,14 +54,7 @@ class Solution {
            if(removedPair.node.right!=null){
              queue.offer(new Pair(removedPair.node.right,false));
            }
-
-
-
-
         }
-      
-
-
         return sum;
     }
 
@@ -52,5 +65,5 @@ class Solution {
             this.node= node;
             this.isLeft=isLeft;
         }
-    }
+    }*/
 }

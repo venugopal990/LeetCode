@@ -3,33 +3,16 @@ class Solution {
         if(s.isEmpty()){
             return true;
         }
-        char[] sCharArray =  s.toCharArray();
-		char[] tCharArray = t.toCharArray();
-		int cursor = 0;
-		boolean result = false;
-		for (int i = 0; i < sCharArray.length; i++) {
-
-			for (int j = cursor; j < tCharArray.length; j++) {
-
-				if(sCharArray[i] == tCharArray[j]) {
-					j++;
-					cursor = j;
-					result = true;
-					break;
-				}else {
-					result = false;
-				}
-			}
-
-			if(i != sCharArray.length-1) {
-				if(!result) {
-					return false;
-				}else {
-					result = false;
-				}
-			}
-
-		}
-		return result;
+        int i=0;
+        int j=0;
+        while(i<s.length() && j<t.length()){
+            if(s.charAt(i) == t.charAt(j)){
+                i++;
+                j++;
+            }else{
+                j++;
+            }
+        }
+		return i > s.length()-1;
     }
 }

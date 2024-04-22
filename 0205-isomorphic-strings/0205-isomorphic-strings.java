@@ -1,29 +1,24 @@
 class Solution {
     public boolean isIsomorphic(String s, String t) {
 
-        Map<Character,Character> sIsomorphicMap = new HashMap<>();
-        Map<Character,Character> tIsomorphicMap = new HashMap<>();
+        Map<Character,Character> sMap =  new HashMap<>();
 
-        char[] sArray = s.toCharArray();
-        char[] tArray = t.toCharArray();
+        for(int i=0; i<s.length(); i++){
 
-        for(int i=0;i<sArray.length;i++){
-            if(sIsomorphicMap.get(sArray[i])!=null){
-                if(!sIsomorphicMap.get(sArray[i]).equals(tArray[i]))
-                    return false;
-            }else{
-                sIsomorphicMap.put(sArray[i],tArray[i]);
-            }
-
-            if(tIsomorphicMap.get(tArray[i])!=null){
-                if(! tIsomorphicMap.get(tArray[i]).equals(sArray[i])){
+            if(!sMap.containsKey(s.charAt(i))){
+                if(!sMap.containsValue(t.charAt(i))){
+                    sMap.put(s.charAt(i), t.charAt(i));
+                }else{
                     return false;
                 }
             }else{
-                tIsomorphicMap.put(tArray[i],sArray[i]);
+                if(sMap.get(s.charAt(i)) !=  t.charAt(i)){
+                    return false;
+                }
             }
         }
 
+        
         return true;
     }
 }

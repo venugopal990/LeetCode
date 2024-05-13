@@ -14,6 +14,38 @@
  * }
  */
 class Solution {
+
+    /** Recursive */
+    /*
+    public List<Integer> postorderTraversal(TreeNode root) {
+
+        
+        List<Integer> resultList =  new ArrayList<>();
+
+        if(root == null){
+            return resultList;
+        }
+
+        postOrderRecursive(root,resultList);
+
+        return resultList;
+
+    }
+
+
+    private void postOrderRecursive(TreeNode root, List<Integer> list){
+        if(root == null){
+            return;
+        }
+
+        postOrderRecursive(root.left,list);
+        postOrderRecursive(root.right,list);
+        list.add(root.val);
+        
+    }
+*/
+
+    /** Iterative */
     public List<Integer> postorderTraversal(TreeNode root) {
 
         List<Integer> resultList =  new ArrayList<>();
@@ -24,17 +56,16 @@ class Solution {
         Stack<TreeNode> stack2 =  new Stack<>();
         stack1.push(root);
         while(!stack1.isEmpty()){
-            TreeNode currentNode = stack1.pop();
-            stack2.push(currentNode);
+            TreeNode removedNode =  stack1.pop();
+            stack2.push(removedNode);
 
-            if(currentNode.left!=null){
-                stack1.push(currentNode.left);
+            if(removedNode.left!=null){
+                stack1.push(removedNode.left);
             }
 
-            if(currentNode.right!=null){
-                stack1.push(currentNode.right);
+            if(removedNode.right!=null){
+                stack1.push(removedNode.right);
             }
-
         }
 
         while(!stack2.isEmpty()){
@@ -43,14 +74,5 @@ class Solution {
         return resultList;
     }
 
-    /*
-    private void postOrder(TreeNode root, List<Integer> arr){
-        if(root == null){
-            return;
-        }
-
-        postOrder(root.left,arr);
-        postOrder(root.right,arr);
-        arr.add(root.val);
-    }*/
+   
 }

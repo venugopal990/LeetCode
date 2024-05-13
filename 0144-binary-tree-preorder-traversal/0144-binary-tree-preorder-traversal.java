@@ -14,24 +14,45 @@
  * }
  */
 class Solution {
+
+    /* Recursive */
+    /*
+    private void preOrderRecursive(TreeNode root, List<Integer> list){
+        if(root == null){
+            return;
+        }
+        list.add(root.val);
+        preOrderRecursive(root.left,list);
+        preOrderRecursive(root.right,list);
+    }
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> resultList = new ArrayList<>();
+        preOrderRecursive(root,resultList);
+        return resultList;
+    }
+    */
+
+    /* Iterative */
     public List<Integer> preorderTraversal(TreeNode root) {
 
         List<Integer> resultList = new ArrayList<>();
         if(root == null){
             return resultList;
         }
-        Stack<TreeNode> treeNodeStack = new Stack<TreeNode>();
-        treeNodeStack.push(root);
-        while(!treeNodeStack.isEmpty()){
+        
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
 
-            TreeNode current = treeNodeStack.pop();
-            resultList.add(current.val);
-             if(current.right!=null){
-                treeNodeStack.push(current.right);
+        while(!stack.isEmpty()){
+            TreeNode removedNode  = stack.pop();
+            resultList.add(removedNode.val);
+
+            if(removedNode.right!=null){
+                stack.push(removedNode.right);
             }
 
-            if(current.left!=null){
-                treeNodeStack.push(current.left);
+            if(removedNode.left!=null){
+                stack.push(removedNode.left);
             }
         }
         return resultList;

@@ -13,35 +13,21 @@
  *     }
  * }
  */
-
- class TreeInfo{
-    int ht;
-    int dia;
-    public TreeInfo(int ht,int dia){
-        this.ht=ht;
-        this.dia=dia;
-    }
- }
 class Solution {
     public int diameterOfBinaryTree(TreeNode root) {
-        return diameter(root).dia;
+        int[] arr = new int[1];
+        diameter(root,arr);
+        return arr[0];
     }
 
-    private TreeInfo diameter(TreeNode root){
+    private int diameter(TreeNode root, int[] arr){
         if(root == null){
-            return new TreeInfo(0,0);
+            return 0;
         }
-        TreeInfo left = diameter(root.left);
-        TreeInfo right = diameter(root.right);
 
-        int myHeight = Math.max(left.ht,right.ht)+1;
-
-        int dia1 = left.dia;
-        int dia2 = right.dia;
-        int dia3 = left.ht+right.ht;
-
-        int mydia = Math.max(Math.max(dia1,dia2),dia3);
- 
-        return new TreeInfo(myHeight,mydia);
+        int left = diameter(root.left,arr);
+        int right = diameter(root.right,arr);
+        arr[0] = Math.max(left+right,arr[0]);
+        return Math.max(left,right)+1;
     }
 }

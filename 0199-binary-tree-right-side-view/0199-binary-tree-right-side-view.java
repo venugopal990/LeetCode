@@ -14,43 +14,40 @@
  * }
  */
 class Solution {
+    class Tuple{
+        TreeNode node;
+        int x;
+        public Tuple(TreeNode node, int x){
+            this.node =  node;
+            this.x =x;
+        }
+    }
     public List<Integer> rightSideView(TreeNode root) {
-
-        List<Integer> result = new  ArrayList<>();
+        List<Integer> result = new ArrayList<>();
         if(root == null){
             return result;
         }
-        Queue<TNode> queue = new LinkedList<>();
-        Map<Integer,Integer> map = new HashMap<>();
-        queue.offer(new TNode(root,0));
+        TreeMap<Integer,Integer> map = new TreeMap<>();
+        Queue<Tuple> queue = new LinkedList<>();
+        queue.offer(new Tuple(root,0));
         while(!queue.isEmpty()){
+            Tuple removedNode = queue.poll();
+            int x = removedNode.x;
 
-            TNode removedNode = queue.poll();
-            int x =  removedNode.x;
             map.put(x,removedNode.node.val);
+
             if(removedNode.node.left!=null){
-                queue.offer(new TNode(removedNode.node.left,x+1));
+                queue.offer(new Tuple(removedNode.node.left,x+1));
             }
 
             if(removedNode.node.right!=null){
-                queue.offer(new TNode(removedNode.node.right,x+1));
+                queue.offer(new Tuple(removedNode.node.right,x+1));
             }
-
         }
-        result.addAll(map.values());
+
+        for(Integer val : map.values()){
+            result.add(val);
+        }
         return result;
-        
     }
-
-    class TNode{
-        TreeNode node;
-        int x;
-        public TNode(TreeNode node,int x){
-            this.node = node;
-            this.x = x;
-        }
-
-    }
-
 }
-

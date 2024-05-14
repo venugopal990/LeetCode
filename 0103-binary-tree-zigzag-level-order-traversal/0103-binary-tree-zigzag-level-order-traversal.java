@@ -20,38 +20,36 @@ class Solution {
         if(root == null){
             return resultList;
         }
-        boolean isZigZagFlag = false;
-        Queue<TreeNode> queue = new LinkedList<>();
+
+        Queue<TreeNode> queue  = new LinkedList<>();
         queue.offer(root);
+        boolean isZigzag = false;
         while(!queue.isEmpty()){
             int size = queue.size();
-            List<Integer> tempList = new ArrayList<>();
-            Stack<Integer> stack  = new Stack();
-            
+            List<Integer> tempList =  new ArrayList<>();
+            Stack<Integer> stack = new Stack<>();
             for(int i=0;i<size;i++){
-                TreeNode  curr = queue.remove();
-
-                if(isZigZagFlag){
-                    stack.push(curr.val);
+                TreeNode removedNode = queue.remove();
+                if(isZigzag){
+                    stack.push(removedNode.val);
                 }else{
-                    tempList.add(curr.val);
+                    tempList.add(removedNode.val);
                 }
 
-                if(curr.left!=null){
-                    queue.add(curr.left);
+                if(removedNode.left!=null){
+                    queue.offer(removedNode.left);
                 }
 
-                if(curr.right!=null){
-                    queue.add(curr.right);
-                }   
+                 if(removedNode.right!=null){
+                    queue.offer(removedNode.right);
+                }
             }
-
-            isZigZagFlag = !isZigZagFlag;
 
             while(!stack.isEmpty()){
                 tempList.add(stack.pop());
             }
             resultList.add(tempList);
+            isZigzag = !isZigzag;
         }
         return resultList;
     }

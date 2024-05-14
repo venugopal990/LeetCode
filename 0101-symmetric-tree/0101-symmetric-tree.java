@@ -15,50 +15,14 @@
  */
 class Solution {
     public boolean isSymmetric(TreeNode root) {
-
-
-        root.right= invertTree(root.right);
-
-        return isSameTree(root.left,root.right);
-        
+        return isMirror(root, root);
     }
 
-
-    public boolean isSameTree(TreeNode p, TreeNode q) {
-
-
-        if(p!=null && q!=null &&  p.val != q.val){
-            return false;
-        }else if(p!=null && q!=null &&  p.val == q.val){
-            if(isSameTree(p.left, q.left) &&  isSameTree(p.right, q.right)){
-                return true;
-            }else{
-                return false;
-            }
-        }else if(p!=null && q==null){
-            return false;
-        }else if(q!=null && p==null){
-            return false;
-        }
-        
-       return true;
-
-    }
-
-
-
-     public TreeNode invertTree(TreeNode root) {
-        if(root == null){
-            return null;
+    private boolean isMirror(TreeNode t1,TreeNode t2){
+        if(t1 == null || t2 == null){
+            return t1 == t2;
         }
 
-        TreeNode temp = root.left;
-        root.left = root.right;
-        root.right = temp;
-
-        invertTree(root.left);
-        invertTree(root.right);
-        return root;
- 
+        return t1.val == t2.val &&  isMirror(t1.left,t2.right) &&  isMirror(t1.right,t2.left); 
     }
 }

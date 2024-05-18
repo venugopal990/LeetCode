@@ -15,18 +15,16 @@
  */
 class Solution {
     public TreeNode deleteNode(TreeNode root, int key) {
-
         if(root == null){
             return null;
-        }    
+        }
 
-        
         if(key < root.val){
             root.left = deleteNode(root.left,key);
         }else if(key > root.val){
             root.right = deleteNode(root.right,key);
         }else{
-            //Case 1
+            //case 1
             if(root.left == null && root.right == null){
                 return null;
             }
@@ -41,23 +39,17 @@ class Solution {
             }
 
             //case 3
-            TreeNode IS = inOrderSuccessor(root.right);
-            root.val = IS.val;
-            root.right = deleteNode(root.right,IS.val);
-
-
+            TreeNode is = inOrderSuccessor(root.right);
+            root.val = is.val;
+            root.right = deleteNode(root.right,is.val);
         }
-
         return root;
-        
     }
 
-    private  TreeNode inOrderSuccessor(TreeNode root){
-
-        while(root.left != null){
+    private TreeNode inOrderSuccessor(TreeNode root){
+        while(root.left!=null){
             root = root.left;
         }
-
         return root;
     }
 }

@@ -16,17 +16,32 @@
 class Solution {
 
     public boolean isValidBST(TreeNode root) {
+        return isValidBST(root,Long.MIN_VALUE,Long.MAX_VALUE);
+    }
+
+    public boolean isValidBST(TreeNode root, long minValue , long maxValue){
+
+        if(root == null){
+            return true;
+        }
+        if(root.val <= minValue || root.val >= maxValue){
+            return false;
+        }
+
+        return isValidBST(root.left,minValue,root.val) && isValidBST(root.right,root.val,maxValue); 
+
+    }
+/*
+    public boolean isValidBST(TreeNode root) {
 
         List<Integer> inOrderList =  new ArrayList<>();
 
         inOrder(root,inOrderList);
 
-        int prev = inOrderList.get(0);
+        //int prev = inOrderList.get(0);
 
-        for(int i=1;i<inOrderList.size();i++){
-            if(inOrderList.get(i)>prev){
-                prev = inOrderList.get(i);
-            }else{
+        for(int i=0;i<inOrderList.size()-1;i++){
+            if(inOrderList.get(i+1)<=inOrderList.get(i)){
                 return false;
             }
         }
@@ -46,5 +61,7 @@ class Solution {
         inOrder(root.right,inOrderList);
 
     }
+
+    */
 
 }

@@ -15,49 +15,48 @@
  */
 class Solution {
 
-    /* Recursive */
     /*
-    private void preOrderRecursive(TreeNode root, List<Integer> list){
+    //resursive
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> resultList = new ArrayList<>();
+        preOrder(root, resultList);
+        return resultList;
+    }
+
+
+    private void preOrder(TreeNode root, List<Integer> resultList){
         if(root == null){
             return;
         }
-        list.add(root.val);
-        preOrderRecursive(root.left,list);
-        preOrderRecursive(root.right,list);
-    }
-    public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> resultList = new ArrayList<>();
-        preOrderRecursive(root,resultList);
-        return resultList;
+        resultList.add(root.val);
+        preOrder(root.left,resultList);
+        preOrder(root.right,resultList);
     }
     */
 
-    /* Iterative */
-    public List<Integer> preorderTraversal(TreeNode root) {
 
+    public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> resultList = new ArrayList<>();
         if(root == null){
             return resultList;
         }
-        
-        Stack<TreeNode> stack = new Stack<>();
+        Stack<TreeNode> stack =  new Stack<>();
         stack.push(root);
 
         while(!stack.isEmpty()){
-            TreeNode removedNode  = stack.pop();
-            resultList.add(removedNode.val);
+            TreeNode removedElement = stack.pop();
+            resultList.add(removedElement.val);
 
-            if(removedNode.right!=null){
-                stack.push(removedNode.right);
+            if(removedElement.right!=null){
+                stack.push(removedElement.right);
             }
 
-            if(removedNode.left!=null){
-                stack.push(removedNode.left);
+            if(removedElement.left!=null){
+                stack.push(removedElement.left);
             }
         }
+
+
         return resultList;
     }
-
-
-    
 }

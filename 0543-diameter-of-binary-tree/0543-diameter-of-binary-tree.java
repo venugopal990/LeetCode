@@ -20,7 +20,7 @@ class Solution {
         return arr[0];
     }
 
-    private int diameter(TreeNode root, int[] arr){
+    private int diameter(TreeNode root,int[] arr){
         if(root == null){
             return 0;
         }

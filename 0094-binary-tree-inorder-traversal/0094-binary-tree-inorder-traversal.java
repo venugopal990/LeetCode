@@ -14,37 +14,45 @@
  * }
  */
 class Solution {
+    /* Iterative - left Root Right - */
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> resultList = new ArrayList<>();
+        
+        Stack<TreeNode> stack = new Stack<>();
+
+        while(!stack.isEmpty() || root!=null){
+            while(root!=null){
+                stack.push(root);
+                root = root.left;
+            }
+
+            root = stack.pop();
+            resultList.add(root.val);
+            root = root.right;
+
+        }
+
+
+        return resultList;
+    }
+
+
+    /** Recursive */
+    /*
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> resultList =  new ArrayList<>();
-        Stack<TreeNode> stack =  new Stack<>();
-        TreeNode node = root; 
-        while(true){
-            
-            if(node!=null){
-                stack.push(node);
-                node =  node.left;
-            }else{
-                if(stack.isEmpty()){
-                    break;
-                }else{
-                    TreeNode popNode = stack.pop();
-                    resultList.add(popNode.val);
-                    node = popNode.right;
-                }
-            }
-        }
+        inOrderRecursive(root,resultList);
         return resultList;
     }
 
     
-    /*
-    private void inOrder(TreeNode root, List<Integer> arr){
+   private void inOrderRecursive(TreeNode root, List<Integer> list){
         if(root == null){
             return;
         }
-
-        inOrder(root.left,arr);
-        arr.add(root.val);
-        inOrder(root.right,arr);
-    }*/
+        inOrderRecursive(root.left,list);
+        list.add(root.val);
+        inOrderRecursive(root.right,list);
+   }
+   */
 }

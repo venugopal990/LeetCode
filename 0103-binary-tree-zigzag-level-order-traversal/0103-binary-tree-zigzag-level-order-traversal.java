@@ -15,22 +15,20 @@
  */
 class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-
-        List<List<Integer>> resultList =  new ArrayList<>();
+        List<List<Integer>> result = new ArrayList<>();
         if(root == null){
-            return resultList;
+            return result;
         }
-
-        Queue<TreeNode> queue  = new LinkedList<>();
+        Queue<TreeNode> queue =  new LinkedList<>();
         queue.offer(root);
-        boolean isZigzag = false;
+        boolean isZigZag = false;
         while(!queue.isEmpty()){
-            int size = queue.size();
+            int size =  queue.size();
             List<Integer> tempList =  new ArrayList<>();
-            Stack<Integer> stack = new Stack<>();
+            Stack<Integer> stack =  new Stack<>();
             for(int i=0;i<size;i++){
                 TreeNode removedNode = queue.remove();
-                if(isZigzag){
+                if(isZigZag){
                     stack.push(removedNode.val);
                 }else{
                     tempList.add(removedNode.val);
@@ -40,17 +38,19 @@ class Solution {
                     queue.offer(removedNode.left);
                 }
 
-                 if(removedNode.right!=null){
+                if(removedNode.right!=null){
                     queue.offer(removedNode.right);
                 }
-            }
+                
+            }//for-end
 
             while(!stack.isEmpty()){
                 tempList.add(stack.pop());
             }
-            resultList.add(tempList);
-            isZigzag = !isZigzag;
+            result.add(tempList);
+            isZigZag = !isZigZag;
         }
-        return resultList;
+
+        return result;
     }
 }

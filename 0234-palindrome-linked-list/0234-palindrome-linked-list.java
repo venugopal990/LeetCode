@@ -19,14 +19,14 @@ class Solution {
             fast = fast.next.next;
         }
 
-        ListNode reversedHead = reverseLL(slow);
+        ListNode reverseHead = reverseLL(slow);
 
-        while(reversedHead!=null){
-            if(head.val != reversedHead.val){
+        while(reverseHead!=null){
+            if(head.val != reverseHead.val){
                 return false;
             }
             head = head.next;
-            reversedHead =  reversedHead.next;
+            reverseHead =  reverseHead.next;
         }
 
          return true;

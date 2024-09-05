@@ -30,7 +30,6 @@ class Solution {
         }
 
          return true;
-        
     }
 
     private ListNode reverseLL(ListNode head){

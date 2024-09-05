@@ -1,46 +1,49 @@
-
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
 class Solution {
     public boolean isPalindrome(ListNode head) {
 
-        ListNode firstHalf = head, secondHalf = head;
+        ListNode slow =  head;
+        ListNode fast =  head;
 
-        while (secondHalf != null && secondHalf.next != null) {
-            firstHalf = firstHalf.next;
-            secondHalf = secondHalf.next.next;
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
         }
 
-        if (secondHalf != null) {
-            firstHalf = firstHalf.next;
-        }
+        ListNode reversedHead = reverseLL(slow);
 
-        firstHalf = reverse(firstHalf);
-        secondHalf = head;
-
-        while (firstHalf != null) {
-
-            if (firstHalf.val != secondHalf.val) {
+        while(reversedHead!=null){
+            if(head.val != reversedHead.val){
                 return false;
             }
-
-            firstHalf = firstHalf.next;
-            secondHalf = secondHalf.next;
+            head = head.next;
+            reversedHead =  reversedHead.next;
         }
 
-        return true;
-
+         return true;
+        
     }
 
-    private ListNode reverse(ListNode head) {
+    private ListNode reverseLL(ListNode head){
         ListNode prev = null;
         ListNode curr = head;
 
-        while (curr != null) {
-            ListNode next = curr.next;
+        while(curr!=null){
+            ListNode nextNode =  curr.next;
             curr.next = prev;
             prev = curr;
-            curr = next;
+            curr =  nextNode;
         }
-        head = prev;
-        return head;
+
+        return prev;
     }
 }
